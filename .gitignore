@@ -1,0 +1,23 @@
+# 編譯出來的東西，壞掉就整個刪掉重來
+build/
+cmake-build-*/
+out/
+
+# TDX 的金鑰，絕對不能推上去
+.env
+
+# 抓下來的原始資料太大，只放整理好的 data/csv/
+data/raw/
+
+# 程式跑出來的網頁資料，每次都會重寫
+web/places.js
+web/trip_data.js
+
+# 步行時間快取，第一次跑會自己算出來
+data/cache/
+
+# 編輯器和系統產生的
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

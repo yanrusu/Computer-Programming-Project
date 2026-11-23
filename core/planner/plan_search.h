@@ -1,5 +1,5 @@
 #pragma once
-// D3 PlanSearch：挑景點、排順序的介面（B 負責）。
+// D3 PlanSearch：挑景點、排順序的介面。
 // 貪婪（GreedySearch）和 ILS（IlsSearch）都長這樣，TripSession 不用管背後是哪一個。
 // 先寫貪婪就能跑，ILS 之後包在外面。
 

@@ -1,6 +1,6 @@
 # web
 
-地圖網頁放這裡（A 負責，A6）。
+地圖網頁放這裡。
 
 - `map.html`：樣板，用 Leaflet 畫地圖。這個要進 Git。
 - `places.js`、`trip_data.js`：C++ 的 `WebExporter` 每次跑都會重寫，不進 Git。

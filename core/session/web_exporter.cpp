@@ -7,12 +7,12 @@ using namespace std;
 // 名字裡有引號或反斜線記得跳脫，不然網頁會壞掉。
 
 void WebExporter::writePlaces(const DataStore& data, const string& folder) const {
-    // TODO(A6) 每個地點寫：名字、座標、類別（地圖依類別上色）、開放時間。
+    // TODO 每個地點寫：名字、座標、類別（地圖依類別上色）、開放時間。
     (void)data; (void)folder;
 }
 
 void WebExporter::writeTrip(const Itinerary& it, const DataStore& data, const string& folder) const {
-    // TODO(A6) 每一站：名字、座標、到達和離開時間；每一段交通：每一小段的方式、路線名稱、path。
+    // TODO 每一站：名字、座標、到達和離開時間；每一段交通：每一小段的方式、路線名稱、path。
     // 再加上費用小計和 warnings，網頁上的行程表要用。
     (void)it; (void)data; (void)folder;
 }

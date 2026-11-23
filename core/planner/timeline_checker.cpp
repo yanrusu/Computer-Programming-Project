@@ -6,7 +6,7 @@ TimelineChecker::TimelineChecker(const DataStore& data, TravelOracle& travel)
 
 CheckResult TimelineChecker::check(const vector<ItineraryStop>& order,
                                    const TripRequest& req, const Settings& s) {
-    // TODO(B5) 從 req.startMin 出發，照順序一站一站算（教學 10 第 7 節）：
+    // TODO 從 req.startMin 出發，照順序一站一站算（教學 10 第 7 節）：
     //
     //   到達 = 上一站離開 + 車程（travel_.travel(上一站, 這一站, 上一站離開時間)）
     //   開始 = max(到達, 開門)              早到就等開門，等多久都可以

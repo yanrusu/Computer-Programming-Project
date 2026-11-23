@@ -2,7 +2,7 @@
 using namespace std;
 
 bool DataStore::loadAll(const string& csvDir) {
-    // TODO(C6) 讀 csvDir 底下的 places.csv（之後還有公車、YouBike、票價那幾個檔）。
+    // TODO 讀 csvDir 底下的 places.csv（之後還有公車、YouBike、票價那幾個檔）。
     // - 欄位照 docs/data_schema.md。
     // - CSV 裡的編號（像 P001）不要直接用，讀的時候用 map<string, int> 換成 0、1、2……
     //   其他檔案提到 P001 時也用同一個 map 換。
@@ -22,7 +22,7 @@ const Place& DataStore::place(int id) const {
 }
 
 vector<int> DataStore::searchByName(const string& keyword) const {
-    // TODO(C6) 每個地點的名字掃一遍，name.find(keyword) != string::npos 的都放進去回傳。
+    // TODO 每個地點的名字掃一遍，name.find(keyword) != string::npos 的都放進去回傳。
     // 地點才幾百個，掃一遍就夠快了，不用想更厲害的方法。
     (void)keyword;
     return {};

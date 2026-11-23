@@ -13,32 +13,32 @@ using namespace std;
 //   記的時候出發時間往後對齊到 10 分鐘（Settings::slotMin），這樣比較容易重複用到。
 
 bool TransitRouter::build(const DataStore& data, const StreetRouter& street, const string& csvDir) {
-    // TODO(B7) 先用 tests/fixtures/ 手寫的小資料（2 條公車、2 個 YouBike 站）建圖，
-    // 點數、邊數要跟手算的一樣。C 的真資料 12/6 前換上。
+    // TODO 先用 tests/fixtures/ 手寫的小資料（2 條公車、2 個 YouBike 站）建圖，
+    // 點數、邊數要跟手算的一樣。真資料好了再換上。
     // 站牌之間、地點到站牌的步行邊，時間問 street.walkMinutes。
     (void)data; (void)street; (void)csvDir;
     return false;
 }
 
 void TransitRouter::setDay(int weekday, bool isHoliday) {
-    // TODO(B7) 每條上車邊都存平日、假日兩套時刻，這裡決定之後用哪一套。換了要 clearCache。
+    // TODO 每條上車邊都存平日、假日兩套時刻，這裡決定之後用哪一套。換了要 clearCache。
     (void)weekday; (void)isHoliday;
 }
 
 void TransitRouter::setOptions(const TripRequest& req, const Settings& s) {
-    // TODO(B8) 記下 allowBus、allowBike。不能搭的就在 Dijkstra 裡跳過那種邊，不用重新建圖。
+    // TODO 記下 allowBus、allowBike。不能搭的就在 Dijkstra 裡跳過那種邊，不用重新建圖。
     // 改了就 clearCache。
     (void)req; (void)s;
 }
 
 void TransitRouter::clearCache() {
-    // TODO(B8) 把記住的車程清空
+    // TODO 把記住的車程清空
 }
 
 TravelInfo TransitRouter::travel(int fromPlace, int toPlace, int departMin) {
-    // TODO(B8) 1. 出發時間往後對齊到 10 分鐘。
-    //          2. 這個（出發地點, 時段）算過了就直接查表回傳。
-    //          3. 沒算過就跑一次看時刻的 Dijkstra，把到所有地點的答案都記起來。
+    // TODO 1. 出發時間往後對齊到 10 分鐘。
+    //      2. 這個（出發地點, 時段）算過了就直接查表回傳。
+    //      3. 沒算過就跑一次看時刻的 Dijkstra，把到所有地點的答案都記起來。
     // 車資：沿著 prevEdge 倒推，每一段搭乘問 CostCalculator::rideFare。
     // （TransitRouter 怎麼拿到 CostCalculator，計劃書的 build 沒有寫，到時候再一起定。）
     (void)fromPlace; (void)toPlace; (void)departMin;
@@ -46,7 +46,7 @@ TravelInfo TransitRouter::travel(int fromPlace, int toPlace, int departMin) {
 }
 
 Leg TransitRouter::travelDetail(int fromPlace, int toPlace, int departMin) {
-    // TODO(B9) 用精確的出發時間（不對齊）跑一次，從終點用 prev 倒推出
+    // TODO 用精確的出發時間（不對齊）跑一次，從終點用 prev 倒推出
     // 「走路 → 300 路 → 75 路 → 走路」，每一小段是一個 Segment。
     // 搭車段的 path 從 TDX 路線形狀切出來，走路段的 path 問 StreetRouter::path。
     (void)fromPlace; (void)toPlace; (void)departMin;

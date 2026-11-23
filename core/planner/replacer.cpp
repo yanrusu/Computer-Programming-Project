@@ -7,7 +7,7 @@ Replacer::Replacer(const DataStore& data, TimelineChecker& checker, TravelOracle
 
 vector<int> Replacer::nearby(const Itinerary& it, int stopIndex,
                              const TripRequest& req, const Settings& s) {
-    // TODO(A9)
+    // TODO
     // 1. 找候選：從第 stopIndex 站過去交通 s.nearbyMin（15）分鐘內的景點，
     //    不在行程裡、也不在 req.dontGo 裡的。
     // 2. 每個候選放到第 stopIndex 站的位置，整個順序丟給 checker_.check，走得完的留下。

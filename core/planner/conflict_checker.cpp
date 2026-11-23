@@ -6,7 +6,7 @@ ConflictChecker::ConflictChecker(const DataStore& data, TimelineChecker& checker
     : data_(data), checker_(checker), meals_(meals) {}
 
 MustGoCheck ConflictChecker::check(const TripRequest& req, const Settings& s) {
-    // TODO(B10) 教學 10 第 12 節。用遞迴（回溯）試所有順序：
+    // TODO 教學 10 第 12 節。用遞迴（回溯）試所有順序：
     // 每一層選「下一站放誰」，放進去、遞迴下去、回來 pop_back、再試下一個。
     //
     // 誰要排：req.mustGo 裡的景點＋meals_.mealSlots 給的吃飯站。

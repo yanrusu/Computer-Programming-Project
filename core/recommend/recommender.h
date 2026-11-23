@@ -1,5 +1,5 @@
 #pragma once
-// Recommender：替景點打分數、判斷這天去不去得了、列出推薦清單（A 負責，A2）。
+// Recommender：替景點打分數、判斷這天去不去得了、列出推薦清單。
 // 只看景點本身和使用者的興趣，不管交通，也不排順序。
 
 #include <vector>

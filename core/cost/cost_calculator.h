@@ -1,5 +1,5 @@
 #pragma once
-// CostCalculator：算錢（C 負責，C10）。
+// CostCalculator：算錢。
 // 車資查「站到站票價表」，那張表是離線工具事先從 TDX 換算好的，這裡只負責查表和加總。
 // 不算轉乘優惠、不算外地人電子票證優惠，YouBike 算 0 元。
 

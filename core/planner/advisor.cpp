@@ -7,7 +7,7 @@ Advisor::Advisor(const DataStore& data, ConflictChecker& conflict, const Recomme
 vector<Suggestion> Advisor::suggest(const TripRequest& req, const Settings& s,
                                     const vector<Conflict>& conflicts,
                                     const set<int>& justAdded) {
-    // TODO(A8) 照下面的順序一個一個試。每一個都先改一份 req／s 的複本，
+    // TODO 照下面的順序一個一個試。每一個都先改一份 req／s 的複本，
     // 丟給 conflict_.check 看排不排得下，排得下才收進來，收滿 3 個就停：
     //
     //   1. DropNew：不加入這一輪剛新增的（justAdded）。

@@ -20,21 +20,21 @@ option(BUILD_QT "編 Qt 版和抓資料工具" OFF)
 # 新增 .cpp 記得加進這個清單（.h 不用加），不然會看到 undefined reference。
 # ---------------------------------------------------------------
 add_library(core STATIC
-    # 資料（C）
+    # 資料
     core/data/data_store.cpp
 
-    # 交通（B）
+    # 交通
     core/street/street_router.cpp
     core/transit/fake_travel.cpp
     core/transit/transit_router.cpp
 
-    # 費用（C）
+    # 費用
     core/cost/cost_calculator.cpp
 
-    # 推薦（A）
+    # 推薦
     core/recommend/recommender.cpp
 
-    # 排行程：D1～D4 是 B，D5～D7 是 A
+    # 排行程（D1～D7）
     core/planner/timeline_checker.cpp
     core/planner/meal_planner.cpp
     core/planner/greedy_search.cpp
@@ -44,7 +44,7 @@ add_library(core STATIC
     core/planner/replacer.cpp
     core/planner/time_bar.cpp
 
-    # 服務層和網頁輸出（A）
+    # 服務層和網頁輸出
     core/session/trip_session.cpp
     core/session/web_exporter.cpp
 )

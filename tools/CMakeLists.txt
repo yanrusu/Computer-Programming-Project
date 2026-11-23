@@ -1,4 +1,4 @@
-# 離線工具（C 負責）：抓 TDX、抓 OpenStreetMap 街道、整理站到站票價表、算步行時間。
+# 離線工具：抓 TDX、抓 OpenStreetMap 街道、整理站到站票價表、算步行時間。
 # 每個工具是獨立的小程式，只有整理資料的人需要跑，主程式只讀它們產生的 CSV。
 #
 # 抓 TDX 會用到 Qt Network 和 QJsonDocument，所以放在 BUILD_QT 底下。

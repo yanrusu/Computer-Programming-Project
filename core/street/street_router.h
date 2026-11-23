@@ -1,6 +1,6 @@
 #pragma once
-// StreetRouter：沿著真的街道算走路、騎 YouBike 要多久，還有地圖上要畫的線（B 負責，B9）。
-// 街道來自 OpenStreetMap（C 轉成 CSV）。公車怎麼搭不歸它管，那是 TransitRouter 的事。
+// StreetRouter：沿著真的街道算走路、騎 YouBike 要多久，還有地圖上要畫的線。
+// 街道來自 OpenStreetMap（先轉成 CSV）。公車怎麼搭不歸它管，那是 TransitRouter 的事。
 
 #include <string>
 #include <utility>

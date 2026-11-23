@@ -1,5 +1,5 @@
 #pragma once
-// WebExporter：寫出地圖網頁要用的資料檔（A 負責，A6）。
+// WebExporter：寫出地圖網頁要用的資料檔。
 // 只寫 places.js 和 trip_data.js 兩個資料檔，網頁本身是 web/map.html，不用 C++ 產生。
 
 #include <string>

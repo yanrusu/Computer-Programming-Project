@@ -8,7 +8,7 @@ Itinerary IlsSearch::search(const vector<ItineraryStop>& mustGoOrder,
     // 貪婪也要知道這一輪的輸入，先轉交給它
     greedy_.setRequest(req_, settings_);
 
-    // TODO(B11) 教學 10 第 11 節：
+    // TODO 教學 10 第 11 節：
     // 1. 先跑一次貪婪，當作目前最好的。
     // 2. 從第 R 站開始，拿掉連續 S 站。一定要去的、吃飯站、起點、終點都不能拿。
     //    （踩過的 bug：R + S 超過長度時會把終點也拿掉，要擋掉。）

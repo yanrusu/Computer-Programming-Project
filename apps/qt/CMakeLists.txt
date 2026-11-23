@@ -1,4 +1,4 @@
-# Qt 版（A 負責，A10）。
+# Qt 版。
 # 還沒開始寫，所以這裡什麼都不編。開始做的時候大概會長這樣：
 #
 #   find_package(Qt6 REQUIRED COMPONENTS Widgets WebEngineWidgets)

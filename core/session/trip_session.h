@@ -1,5 +1,5 @@
 #pragma once
-// TripSession：服務層（A 負責，A5）。畫面（console、Qt）只呼叫它，不直接碰下面的模組。
+// TripSession：服務層。畫面（console、Qt）只呼叫它，不直接碰下面的模組。
 // 它記住每一輪的狀態、執行使用者的操作、決定什麼時候呼叫哪個模組。
 // 自己不做計算，算東西都交給下面的模組；也不 cout，結果回傳給畫面去印。
 //
@@ -74,7 +74,7 @@ private:
     DataStore data_;
     StreetRouter street_;
     FakeTravel fake_;           // 真的交通好之前先用這個
-    TransitRouter transit_;     // 真的交通，B8 做好後把下面幾行的 fake_ 換成 transit_
+    TransitRouter transit_;     // 真的交通，做好後把下面幾行的 fake_ 換成 transit_
     CostCalculator cost_;
     Recommender rec_;
     TimelineChecker checker_;

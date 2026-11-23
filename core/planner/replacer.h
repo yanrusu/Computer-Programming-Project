@@ -1,5 +1,5 @@
 #pragma once
-// D6 Replacer：就近替換。使用者想把第 i 站換掉時，列出附近、放進去也走得完的景點（A 負責，A9）。
+// D6 Replacer：就近替換。使用者想把第 i 站換掉時，列出附近、放進去也走得完的景點。
 // 只列清單，真的換掉是 TripSession 的事。
 
 #include <vector>

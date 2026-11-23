@@ -2,7 +2,7 @@
 using namespace std;
 
 vector<ItineraryStop> MealPlanner::mealSlots(const TripRequest& req, const Settings& s) const {
-    // TODO(B6) 行程 [req.startMin, req.endMin] 跟用餐時段重疊至少 60 分鐘才吃。
+    // TODO 行程 [req.startMin, req.endMin] 跟用餐時段重疊至少 60 分鐘才吃。
     // 兩段時間重疊多少：max(0, min(a2, b2) - max(a1, b1))
     //
     //   9:00～17:00  → 午餐重疊 120 分鐘，要吃；晚餐 0，不吃

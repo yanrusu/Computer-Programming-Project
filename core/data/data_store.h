@@ -1,5 +1,5 @@
 #pragma once
-// DataStore：把 data/csv/ 裡的 CSV 讀進來，之後大家都跟它拿資料（C 負責，C6）。
+// DataStore：把 data/csv/ 裡的 CSV 讀進來，之後大家都跟它拿資料。
 // 只負責讀檔和存放，不做任何計算，也不 cout（讀檔出錯就回傳 false）。
 
 #include <string>

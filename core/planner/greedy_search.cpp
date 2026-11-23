@@ -6,7 +6,7 @@ GreedySearch::GreedySearch(const DataStore& data, TimelineChecker& checker, cons
 
 Itinerary GreedySearch::search(const vector<ItineraryStop>& mustGoOrder,
                                const vector<int>& candidates) {
-    // TODO(B6) 從 mustGoOrder 開始（教學 10 第 10 節）：
+    // TODO 從 mustGoOrder 開始（教學 10 第 10 節）：
     //
     // 重複做，直到什麼都塞不進去：
     //   對每個還沒排進去的候選、每個可以插的位置（起點後面到終點前面都試）：

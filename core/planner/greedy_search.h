@@ -1,5 +1,5 @@
 #pragma once
-// D3 GreedySearch：貪婪插入（B 負責，B6）。
+// D3 GreedySearch：貪婪插入。
 // 每一輪試「每個候選 × 每個位置」，挑最划算的插進去，插到塞不下為止。
 // 挑了就不回頭，所以可能不是最好的；讓它變好是 IlsSearch 的事。
 

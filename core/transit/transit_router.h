@@ -1,5 +1,5 @@
 #pragma once
-// TransitRouter：真的交通（B 負責，B7～B9）。
+// TransitRouter：真的交通。
 // 用路線節點圖＋看時刻表的 Dijkstra，算出「幾點從 A 出發，最早幾點到 B、怎麼搭」。
 // 只有走路、YouBike、公車，沒有捷運和台鐵；路線一律選最早到的。
 // 走路和騎車的時間跟 StreetRouter 要，車資跟 CostCalculator 要，自己不讀票價。

@@ -4,6 +4,7 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN   // 讓 doctest 幫我們寫 main()
 #include "doctest.h"
 
+#include <vector>
 #include "data/data_store.h"
 #include "data/types.h"
 #include "session/trip_session.h"
@@ -19,6 +20,8 @@ TEST_CASE("Settings 的預設值跟計劃書一樣") {
     CHECK(s.lunchCost == 250);
     CHECK(s.candidateCount == 30);
     CHECK(s.maxMustGo == 8);
+    CHECK(s.ignoreBudget == false);
+    CHECK(s.ignoreMeal == false);
 }
 
 TEST_CASE("沒填的欄位是 -1") {
@@ -29,9 +32,13 @@ TEST_CASE("沒填的欄位是 -1") {
     Place p;
     CHECK(p.openMin[0] == -1);     // 還沒填開放時間就當公休
     CHECK(p.rating == 3);          // 還沒評分就當 3 分
+
+    ItineraryStop stop;
+    CHECK(stop.placeId == -1);
+    CHECK(stop.isDinner == false);
 }
 
-TEST_CASE("測試可以直接塞手寫的地點進 DataStore，編號就是位置") {
+TEST_CASE("測試可以直接放手寫的地點進 DataStore，編號就是位置") {
     std::vector<Place> places(2);
     places[0].name = "台中車站";
     places[1].name = "台中州廳";

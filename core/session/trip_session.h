@@ -12,14 +12,7 @@
 #include "data/data_store.h"
 #include "data/types.h"
 #include "planner/advisor.h"
-#include "planner/conflict_checker.h"
-#include "planner/greedy_search.h"
-#include "planner/ils_search.h"
-#include "planner/meal_planner.h"
-#include "planner/plan_search.h"
-#include "planner/replacer.h"
-#include "planner/time_bar.h"
-#include "planner/timeline_checker.h"
+#include "planner/planner.h"
 #include "recommend/recommender.h"
 #include "session/web_exporter.h"
 #include "street/street_router.h"
@@ -74,22 +67,16 @@ public:
 
 private:
     // 注意：宣告的順序就是建立的順序，後面的會用到前面的，不要隨便換位置。
-    DataStore data_;
+    // 由上往下就是依賴的順序：資料 → 交通 → 推薦 → 排行程 → 建議。
+    DataStore data_;            // 資料
     StreetRouter street_;
     FakeTravel fake_;           // 假的交通（直線距離）
     TransitRouter transit_;     // 真的交通
     TravelOracle& travel_;      // 排行程時用哪一種交通。現在是 fake_，真的交通做好後在建構函式改成 transit_
     CostCalculator cost_;
-    Recommender rec_;
-    TimelineChecker checker_;   // D1
-    MealPlanner meals_;         // D2
-    GreedySearch greedy_;       // D3 貪婪
-    IlsSearch ils_;             // D3 ILS
-    PlanSearch& search_;        // 排行程用哪一種搜尋。現在是 ils_（ILS 還沒寫好時它會直接用貪婪）
-    ConflictChecker conflict_;  // D4
-    Advisor advisor_;           // D5
-    Replacer replacer_;         // D6
-    TimeBar timeBar_;           // D7
+    Recommender rec_;           // 推薦
+    Planner planner_;           // 排行程 D1～D4
+    Advisor advisor_;           // 建議、替換、時間條 D5～D7
     WebExporter web_;
 
     std::vector<RoundState> history_;   // 每一輪疊起來，最後一個是現在。回到上一輪就是 pop_back

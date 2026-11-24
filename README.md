@@ -24,7 +24,7 @@ ctest --test-dir build
 | --- | --- |
 | `core/data/` | `types.h`（全組共用的 struct）、`DataStore` |
 | `core/street/`、`core/transit/` | 走路、YouBike、公車怎麼搭 |
-| `core/planner/` | D1～D4 排行程、D5～D7 建議和替換 |
+| `core/planner/` | `Planner`（D1～D4 排行程）、`Advisor`（D5～D7 建議、替換、時間條） |
 | `core/recommend/` | 打分數、推薦清單 |
 | `core/cost/` | 車資、門票、餐費 |
 | `core/session/` | `TripSession`（畫面只呼叫它）、`WebExporter` |

@@ -4,16 +4,13 @@ using namespace std;
 // 誰呼叫誰（教學 10 第 0-2 節）：
 //
 // 畫面 → TripSession.start / replan
-//   ├ Recommender.recommend        推薦清單，前 30 名當候選
-//   ├ ConflictChecker.check（D4）  一定要去的排得下嗎？
-//   │   ├ MealPlanner.mealSlots（D2） 要放哪幾個吃飯站
-//   │   └ TimelineChecker.check（D1） 每種順序走不走得完
-//   │       └ TravelOracle.travel     兩站之間要多久
-//   ├ 排不下 → Advisor.suggest（D5），這一輪到這裡結束
-//   ├ PlanSearch.search（D3）      在那個順序中間補景點
-//   │   └ 一直呼叫 TimelineChecker.check（D1）
-//   ├ TravelOracle.travelDetail    每一段交通的細節
-//   └ CostCalculator.fillCosts     車資、門票、餐費
+//   ├ rec_.recommend             推薦清單，前 30 名當候選
+//   ├ planner_.mustGoCheck（D4） 一定要去的排得下嗎？
+//   ├ 排不下 → advisor_.suggest（D5），這一輪到這裡結束
+//   ├ planner_.ils（D3）         在那個順序中間補景點
+//   ├ travel_.travelDetail       每一段交通的細節
+//   └ cost_.fillCosts            車資、門票、餐費
+// （Planner 裡面怎麼互相呼叫，看 planner.cpp 最上面）
 //
 // history_ 是一疊 RoundState，每一輪存一份完整的，
 // 所以回到上一輪不用反著做，直接把最上面那份丟掉就好。
@@ -23,14 +20,8 @@ TripSession::TripSession()
     : fake_(data_),
       travel_(fake_),           // 真的交通做好後，這一行改成 travel_(transit_)
       rec_(data_),
-      checker_(data_, travel_),
-      greedy_(data_, checker_, rec_),
-      ils_(greedy_),
-      search_(ils_),
-      conflict_(data_, checker_, meals_),
-      advisor_(data_, conflict_, rec_),
-      replacer_(data_, checker_, travel_, rec_),
-      timeBar_(data_) {}
+      planner_(data_, travel_, rec_),
+      advisor_(data_, travel_, rec_, planner_) {}
 
 bool TripSession::init(const string& csvDir) {
     // TODO 程式一開始要讀的東西。
@@ -114,15 +105,15 @@ PlanResult TripSession::replan() {
     // TODO 按「執行」：照草稿重新排（教學 08 第 3 節有範例）。
     //
     // 這裡要做的事：
-    // 1. mc = conflict_.check(draft_.request, draft_.settings)       ← D4
+    // 1. mc = planner_.mustGoCheck(draft_.request, draft_.settings)   ← D4
     // 2. mc.ok 是 false（排不下）：
     //    result.ok = false，result.conflicts = mc.conflicts，
     //    result.suggestions = advisor_.suggest(草稿的 request, settings, mc.conflicts, justAdded_)
     //    直接回傳。草稿留著，使用者可以「返回修改」或套用建議。
     // 3. 排得下：
     //    candidates = rec_.recommend(...) 的前 settings.candidateCount 個
-    //    search_.setRequest(草稿的 request, settings)
-    //    it = search_.search(mc.bestOrder, candidates)                ← D3
+    //    it = planner_.ils(mc.bestOrder, candidates, 草稿的 request, settings)   ← D3
+    //    （如果之後決定砍掉 ILS，這裡改成 planner_.greedy 就好）
     // 4. 每兩站之間的交通：i 從 0 到 it.stops.size() - 2，
     //    it.legs.push_back(travel_.travelDetail(第 i 站的地點, 第 i+1 站的地點, 第 i 站的離開時間))
     //    吃飯站的 placeId 是 -1：它的地點當作跟前一站一樣，前後兩段放一個 0 分鐘的空 Leg。
@@ -146,7 +137,7 @@ PlanResult TripSession::trim(const vector<int>& removeIds) {
     // 1. next = history_.back()（從現在這一輪改）。
     // 2. 從 next.itinerary.stops 拿掉 removeIds 裡的景點，剩下的放進新的順序 order。
     // 3. 被拿掉的也要從 next.request 的 mustGo、keptOrder 拿掉，放進 dontGo。
-    // 4. r = checker_.check(order, next.request, next.settings)，用 r.timed 當新的 stops。
+    // 4. r = planner_.check(order, next.request, next.settings)，用 r.timed 當新的 stops。
     //    少一站只會讓後面提早到，所以一定走得完，不用跑 D4。
     // 5. 跟 replan 的第 4、5 步一樣補交通細節和費用。
     // 6. 全部刪光也照樣存，畫面會提示「行程裡沒有景點」。
@@ -209,14 +200,14 @@ vector<int> TripSession::deletedPlaces() const {
 
 vector<int> TripSession::replaceOptions(int stopIndex) {
     // TODO 就近替換的選項。
-    // 呼叫 replacer_.nearby(itinerary(), stopIndex, 草稿的 request, 草稿的 settings)，直接回傳。
+    // 呼叫 advisor_.nearby(itinerary(), stopIndex, 草稿的 request, 草稿的 settings)，直接回傳。
     vector<int> answer;
     return answer;
 }
 
 int TripSession::timeBarMinutes(const vector<int>& selected) const {
     // TODO 時間條。
-    // 呼叫 timeBar_.estimate(itinerary(), selected, 草稿的 settings)，直接回傳。
+    // 呼叫 advisor_.timeBar(itinerary(), selected, 草稿的 settings)，直接回傳。
     return 0;
 }
 

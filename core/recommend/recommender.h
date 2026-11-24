@@ -2,7 +2,7 @@
 // Recommender：替景點打分數、判斷這天去不去得了、列出推薦清單。
 // 只看景點本身和使用者的興趣，不管交通，也不排順序。
 //
-// 誰會用它：TripSession 拿推薦清單當候選；GreedySearch 問分數；Advisor、Replacer 排序時也問分數。
+// 誰會用它：TripSession 拿推薦清單當候選；Planner 的 greedy 問分數；Advisor 排序時也問分數。
 
 #include <vector>
 #include "data/data_store.h"

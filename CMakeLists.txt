@@ -34,15 +34,9 @@ add_library(core STATIC
     # 推薦
     core/recommend/recommender.cpp
 
-    # 排行程（D1～D7）
-    core/planner/timeline_checker.cpp
-    core/planner/meal_planner.cpp
-    core/planner/greedy_search.cpp
-    core/planner/ils_search.cpp
-    core/planner/conflict_checker.cpp
+    # 排行程：Planner 是 D1～D4，Advisor 是 D5～D7
+    core/planner/planner.cpp
     core/planner/advisor.cpp
-    core/planner/replacer.cpp
-    core/planner/time_bar.cpp
 
     # 服務層和網頁輸出
     core/session/trip_session.cpp
